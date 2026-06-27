@@ -1,0 +1,7 @@
+services:
+  bot:
+    build: .
+    image: bun:discordjs_bun_template
+    env_file: .env
+    restart: on-failure
+    container_name: discordjs_bun_template
