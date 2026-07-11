@@ -1,4 +1,4 @@
-import type { ICommand, ISlashCommandOptions } from "@types";
+import type { ICommand } from "@types";
 import { ChatInputCommandInteraction, InteractionResponse, SlashCommandBuilder } from "discord.js";
 import { SlashCommandOptionsBuilder } from "../builders/slashCommandOptionsBuilder";
 

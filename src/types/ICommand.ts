@@ -5,7 +5,7 @@ export type SlashCommandJSON =
   | SlashCommandSubcommandsOnlyBuilder
   | SlashCommandSubcommandsOnlyBuilder;
 
-type CooldownTypes = "global" | "guild" | "user";
+export type CooldownTypes = "global" | "guild" | "user";
 
 export type Cooldown = Partial<Record<CooldownTypes, number>>;
 

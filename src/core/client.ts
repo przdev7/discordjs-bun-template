@@ -2,7 +2,7 @@ import { ActivityType, Client, Collection, GatewayIntentBits, Partials } from "d
 import { AppError, ConfigService } from "@core";
 import { EventHandler } from "../handlers/event";
 import { CommandHandler } from "../handlers/command";
-import type { ICommand, IEvent } from "@types";
+import type { Cooldown, ICommand, IEvent } from "@types";
 
 export class BotClient extends Client {
   private static instance: BotClient;
@@ -10,7 +10,8 @@ export class BotClient extends Client {
   private eventHandler: EventHandler;
   private commandHandler: CommandHandler;
   public events: IEvent[] = [];
-  public commands: Collection<string, ICommand> = new Collection<string, ICommand>();
+  public cooldowns = new Collection<string, Record<string, Cooldown>>();
+  public commands = new Collection<string, ICommand>();
 
   private constructor() {
     super({
