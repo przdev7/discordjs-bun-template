@@ -1,5 +1,4 @@
-import { AppError } from "@core/appError";
-import type { BotClient } from "@core/client";
+import { AppError, BotClient } from "@core";
 import type { IEvent } from "@types";
 import { readdir } from "node:fs/promises";
 import path from "node:path";

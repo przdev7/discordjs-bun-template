@@ -1,4 +1,4 @@
-import type { BotClient } from "@core/client";
+import type { BotClient } from "@core";
 import type { ClientEvents } from "discord.js";
 
 export interface IEvent {
