@@ -5,7 +5,7 @@ import { CommandHandler } from "../handlers/command";
 import type { Cooldown, ICommand, IEvent } from "@types";
 
 export class BotClient extends Client {
-  private static instance: BotClient;
+  private static _instance: BotClient;
   private config: ConfigService;
   private eventHandler: EventHandler;
   private commandHandler: CommandHandler;
@@ -30,14 +30,14 @@ export class BotClient extends Client {
       },
     });
 
-    this.config = ConfigService.getInstance();
-    this.eventHandler = EventHandler.getInstance();
-    this.commandHandler = CommandHandler.getInstance();
+    this.config = ConfigService.instance;
+    this.eventHandler = EventHandler.instance;
+    this.commandHandler = CommandHandler.instance;
   }
 
-  static getInstance(): BotClient {
-    if (!this.instance) this.instance = new BotClient();
-    return this.instance;
+  static get instance(): BotClient {
+    if (!this._instance) this._instance = new BotClient();
+    return this._instance;
   }
 
   public async run(): Promise<void> {

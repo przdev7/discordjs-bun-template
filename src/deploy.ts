@@ -7,8 +7,8 @@ import path from "node:path";
 
 await ConfigService.init();
 
-const handler = CommandHandler.getInstance();
-const config = ConfigService.getInstance();
+const handler = CommandHandler.instance;
+const config = ConfigService.instance;
 const commandsData: ICommand[] = [];
 
 const { values } = parseArgs({

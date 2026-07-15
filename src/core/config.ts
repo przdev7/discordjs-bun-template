@@ -3,7 +3,7 @@ import Joi, { type ValidationError } from "joi";
 import { AppError } from "@core";
 
 export class ConfigService {
-  private static instance: ConfigService;
+  private static _instance: ConfigService;
   private env: Config;
 
   private constructor(env: Config) {
@@ -11,8 +11,8 @@ export class ConfigService {
   }
 
   static async init(): Promise<void> {
-    if (this.instance)
-      throw new AppError("AppError", "already initialized, to get instance use getInstance() method", true);
+    if (this._instance)
+      throw new AppError("AppError", "already initialized, to get instance use `instance` getter", true);
 
     const parsedEnv = Bun.env;
     const schema = Joi.object<Config>({
@@ -31,12 +31,12 @@ export class ConfigService {
       .catch((e: ValidationError) => {
         throw new AppError("ValidationError", e.message, false, String(e.cause));
       });
-    this.instance = new ConfigService(env);
+    this._instance = new ConfigService(env);
   }
 
-  static getInstance(): ConfigService {
-    if (!this.instance) throw new AppError("AppError", "config not initialized, use init() method", false);
-    return this.instance;
+  static get instance(): ConfigService {
+    if (!this._instance) throw new AppError("AppError", "config not initialized, use init() method", false);
+    return this._instance;
   }
 
   public get(key: keyof Config) {

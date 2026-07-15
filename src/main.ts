@@ -4,8 +4,8 @@ import { ProcessErrorHandler } from "./handlers/processError";
 try {
   await ConfigService.init();
 
-  const config = ConfigService.getInstance();
-  const client = BotClient.getInstance();
+  const config = ConfigService.instance;
+  const client = BotClient.instance;
   const errorHandler = new ProcessErrorHandler(client, config);
   errorHandler.registerListeners();
 

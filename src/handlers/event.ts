@@ -4,11 +4,11 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 export class EventHandler {
-  private static instance: EventHandler;
+  private static _instance: EventHandler;
 
-  static getInstance(): EventHandler {
-    if (!this.instance) this.instance = new EventHandler();
-    return this.instance;
+  static get instance(): EventHandler {
+    if (!this._instance) this._instance = new EventHandler();
+    return this._instance;
   }
 
   async load(client: BotClient): Promise<void> {

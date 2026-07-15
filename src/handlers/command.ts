@@ -5,11 +5,11 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 export class CommandHandler {
-  private static instance: CommandHandler;
+  private static _instance: CommandHandler;
 
-  static getInstance(): CommandHandler {
-    if (!this.instance) this.instance = new CommandHandler();
-    return this.instance;
+  static get instance(): CommandHandler {
+    if (!this._instance) this._instance = new CommandHandler();
+    return this._instance;
   }
 
   async load(client: BotClient): Promise<CommandHandler> {
